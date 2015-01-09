@@ -65,6 +65,7 @@ impute_spring <- function(input, subject="reading", na_replacement=-1){
   newdata$predict_spring_RIT<-pred_mean
   newdata$predict_spring_RIT_low<-pred_low
   newdata$predict_spring_RIT_high<-pred_high
+  newdata$predict_spring_RIT_SD<-pred_sd
   
   newdata
 }
