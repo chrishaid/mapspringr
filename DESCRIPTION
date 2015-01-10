@@ -12,4 +12,4 @@ Depends:
 Imports:
     randomForest
 License: What license is it under?
-LazyData: true
+LazyData: false
