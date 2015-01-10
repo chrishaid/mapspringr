@@ -68,4 +68,6 @@ rf_math<- run_rf(TestRITScore.y ~
                       Grade,
                     .data=map_fs_math)
 
-save(rf_reading, rf_math, file="data/rf_models.Rda")
+save(rf_reading, rf_math, file="R/sysdata.rda")
+devtools::use_data(rf_reading, rf_math, ineral)
+od
