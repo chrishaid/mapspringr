@@ -26,9 +26,7 @@
 #' impute_spring(test_data, subject="reading")
 impute_spring <- function(input, subject="reading", na_replacement=-1){
   
-  # load system data
-  #data(sysdata.rda, envir=environment())
-  
+
   # input can either be csv file or data  
   newdata <- if(is.character(input) && file.exists(input)){
     read.csv(input)
