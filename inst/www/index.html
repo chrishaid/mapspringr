@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Springr</title>
+  <link href="bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+  <div class="container">
+    <h1>Springr: Impute prior spring RIT scores from current Fall scores. </h1>
+
+    <div class="page-header">
+    <h2>Scoring example with curl</h2>
+    </div>
+
+    <p>To call the <code>impute_spring</code> function with <code>curl</code> using basic <a href="https://www.opencpu.org/api.html#api-json">JSON RPC</a>:</p>
+
+    <pre class="highlight" id="curlcode">
+    curl https://chrishaid.ocpu.io/mapspringr/R/impute_spring \
+      -d 'input=[{"TestDurationMinutes":26,\
+                  "TestRITScore":201,\
+                  "Goal1RitScore":200,\
+                  "Goal2RitScore":189,\
+                  "Goal3RitScore":203,\
+                  "Goal4RitScore":211,\
+                  "PercentCorrect":54,\
+                  "Grade":"8"}]\
+                  &subject="math"'
+    </pre>
+
+    <div class="page-header">
+      <h2>Get scores here</h2>
+    </div>
+
+    <form class="form-inline" role="form">
+      <input type="radio" name="subject" value="reading" checked>Reading
+      <br>
+      <input type="radio" name="subject" value="math">Mathematics
+      <table class="table table-bordered">
+        <thead>
+          <tr><th>Fall Grade</th><th>Fall RIT</th><th>Goal 1 RIT</th><th>Goal 2 RIT</th><th>Goal 3 RIT</th><th>Goal 4 RIT</th><th>Percent Correct</th><th>Test Duration</th></tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <div class="text-center">
+        <button type="button" id="imputebutton" class="btn btn-primary btn-lg">Impute Spring RIT!</button>
+      </div>
+    </form>
+
+    <div class="page-header">
+      <h2>Batch impute with Comprehensive Data File (as a CSV)</h2>
+    </div>
+
+    <p>Lorem ipsum</p>
+
+    <form role="form">
+    <input type="radio" name="subject" value="reading" checked>Reading
+      <br>
+      <input type="radio" name="subject" value="math">Mathematics
+      <div class="form-group">
+        <img src="spinner.gif" class="spinner" style="display:none;" />
+        <input class="btn btn-primary btn-lg" type="file" id="csvfile"> 
+        <br> 
+        <a class="btn btn-success btn-lg hide" target="_blank" id="outputcsv">Output CSV</a>
+      </div>
+      
+    </form>
+
+  </div>
+
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+  <script src="opencpu.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
