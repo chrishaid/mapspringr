@@ -75,7 +75,7 @@ $(function(){
 							 + '<td> <div class="form-group"> <input disabled="disabled" class="disabled form-control springritfield"> </div> </td> </tr>');
 	}
 
-	for(var i = 0; i < 5; i++){
+	for(var i = 0; i < 1; i++){
 		addrow();
 	}
 });

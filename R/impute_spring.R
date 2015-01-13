@@ -78,12 +78,12 @@ impute_spring <- function(input, subject="reading", na_replacement=-1){
   pred_low<-pred_mean - 2*pred_sd
   
   #rever tot old column names
-  names(newdata)<-old_col_names
+  #names(newdata)<-old_col_names
+  out <- input
+  input$predict_spring_RIT<-pred_mean
+  input$predict_spring_RIT_low<-pred_low
+  input$predict_spring_RIT_high<-pred_high
+  input$predict_spring_RIT_SD<-pred_sd
   
-  newdata$predict_spring_RIT<-pred_mean
-  newdata$predict_spring_RIT_low<-pred_low
-  newdata$predict_spring_RIT_high<-pred_high
-  newdata$predict_spring_RIT_SD<-pred_sd
-  
-  newdata
+  input # return
 }
