@@ -38,13 +38,15 @@ $(function(){
 	});
 
 	//CSV file scoring
+	var subj_csv = $('input[name="csv_subjectfield"]:checked').val()
+
 	$("#csvfile").on("change", function loadfile(e){
 		if(!$("#csvfile").val()) return;
 		$("#outputcsv").addClass("hide").attr("href", "");
 		$(".spinner").show()
 		var req = ocpu.call("impute_spring", {
 			input : $("#csvfile")[0].files[0],
-			subject : subj
+			subject : subj_csv
 		}, function(tmp){
 			$("#outputcsv").removeClass("hide").attr("href", tmp.getLoc() + "R/.val/csv")
 		}).fail(function(){

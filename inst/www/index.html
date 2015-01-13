@@ -14,25 +14,6 @@
     <h1>Springr: Impute prior spring RIT scores from current Fall scores. </h1>
 
     <div class="page-header">
-    <h2>Calling <pre>impute_spring</pre> with curl example</h2>
-    </div>
-
-    <p>To call the <code>impute_spring</code> function with <code>curl</code> using basic <a href="https://www.opencpu.org/api.html#api-json">JSON RPC</a>:</p>
-
-    <pre class="highlight" id="curlcode">
-    curl https://chrishaid.ocpu.io/mapspringr/R/impute_spring \
-      -d 'input=[{"TestDurationMinutes":26,\
-                  "TestRITScore":201,\
-                  "Goal1RitScore":200,\
-                  "Goal2RitScore":189,\
-                  "Goal3RitScore":203,\
-                  "Goal4RitScore":211,\
-                  "PercentCorrect":54,\
-                  "Grade":"8"}]\
-                  &subject="math"'
-    </pre>
-
-    <div class="page-header">
       <h2>Get scores here</h2>
     </div>
 
@@ -60,10 +41,12 @@
 
     <p>Lorem ipsum</p>
 
-    <form role="form">
-    <input type="radio" name="subject" value="reading" checked>Reading
+    <form role="form"> 
+    <input type="radio" name="csv_subjectfield" value="reading" checked> Reading
       <br>
-      <input type="radio" name="subject" value="math">Mathematics
+      <input type="radio" name="csv_subjectfield" value="math"> Mathematics
+      <br>
+      <br>
       <div class="form-group">
         <img src="spinner.gif" class="spinner" style="display:none;" />
         <input class="btn btn-primary btn-lg" type="file" id="csvfile"> 
@@ -72,6 +55,25 @@
       </div>
       
     </form>
+
+    <div class="page-header">
+    <h2>Imputing spring RIT Scores with curl</h2>
+    </div>
+
+    <p>To call the <code>impute_spring</code> function with <code>curl</code> using basic <a href="https://www.opencpu.org/api.html#api-json">JSON RPC</a>:</p>
+
+    <pre class="highlight" id="curlcode">
+     curl https://chrishaid.ocpu.io/mapspringr/R/impute_spring -d \
+      'input=[{"Grade":"8",'\
+      '"TestRITScore":201,'\
+      '"Goal1RitScore":200,'\
+      '"Goal2RitScore":189,'\
+      '"Goal3RitScore":203,'\
+      '"Goal4RitScore":211,'\
+      '"PercentCorrect":54,'\
+      '"TestDurationInMinutes":26}]'\
+      '&subject="math"'
+    </pre>
 
   </div>
 
