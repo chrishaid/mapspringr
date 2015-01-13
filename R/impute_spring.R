@@ -29,6 +29,7 @@ impute_spring <- function(input, subject="reading", na_replacement=-1){
     as.data.frame(input)
   }
   
+  out<-newdata
   cols<-names(newdata)
   
   # validation
@@ -79,11 +80,10 @@ impute_spring <- function(input, subject="reading", na_replacement=-1){
   
   #rever tot old column names
   #names(newdata)<-old_col_names
-  out <- input
-  input$predict_spring_RIT<-pred_mean
-  input$predict_spring_RIT_low<-pred_low
-  input$predict_spring_RIT_high<-pred_high
-  input$predict_spring_RIT_SD<-pred_sd
+  out$predict_spring_RIT<-pred_mean
+  out$predict_spring_RIT_low<-pred_low
+  out$predict_spring_RIT_high<-pred_high
+  out$predict_spring_RIT_SD<-pred_sd
   
-  input # return
+  out # return
 }
