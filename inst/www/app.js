@@ -14,7 +14,7 @@ $(function(){
 				Goal3RitScore : parseFloat($(this).find(".g3field").val()),
 				Goal4RitScore : parseFloat($(this).find(".g4field").val()),
 				PercentCorrect : parseFloat($(this).find(".pctcorrectfield").val()),
-				TestDurationMinutes: parseFloat($(this).find(".durationfield").val())
+				TestDurationInMinutes: parseFloat($(this).find(".durationfield").val())
 			};
 		});
 		
@@ -29,7 +29,7 @@ $(function(){
 				$(this).find(".g3field").val(output[i].Goal3RitScore);
 				$(this).find(".g4field").val(output[i].Goal4RitScore);
 				$(this).find(".pctcorrectfield").val(output[i].PercentCorrect);
-				$(this).find(".durationfield").val(output[i].TestDurationMinutes);
+				$(this).find(".durationfield").val(output[i].TestDurationInMinutes);
 				$(this).find(".springritfield").val(output[i].predict_RIT);
 			});
 		}).fail(function(){
@@ -43,7 +43,7 @@ $(function(){
 		$("#outputcsv").addClass("hide").attr("href", "");
 		$(".spinner").show()
 		var req = ocpu.call("impute_spring", {
-			input : $("#csvfile")[0].files[0]
+			input : $("#csvfile")[0].files[0],
 			subject : subj
 		}, function(tmp){
 			$("#outputcsv").removeClass("hide").attr("href", tmp.getLoc() + "R/.val/csv")
