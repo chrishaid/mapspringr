@@ -30,7 +30,7 @@ $(function(){
 				$(this).find(".g4field").val(output[i].Goal4RitScore);
 				$(this).find(".pctcorrectfield").val(output[i].PercentCorrect);
 				$(this).find(".durationfield").val(output[i].TestDurationInMinutes);
-				$(this).find(".springritfield").val(output[i].predict_RIT);
+				$(this).find(".springritfield").val(output[i].predict_spring_RIT);
 			});
 		}).fail(function(){
 			alert(req.responseText);
