@@ -23,14 +23,9 @@ Models require 5 predictors \code{TestRITScore.x}, \code{Goal1RitScore.x},
 as well as a subject indicator.
 }
 \examples{
-require(mapvisuals)
-require(dplyr)
-data(nweamap)
+data(fallmap)
 
-map_mv <- nweamap \%>\% filter(MeasurementScale=="Reading") \%>\%
-   mapvizer
-
-test_data<-map_mv \%>\% head(10)
+test_data <- fallap \%>\% filter(MeasurementScale=="Reading")
 
 impute_spring(test_data, subject="reading")
 }
