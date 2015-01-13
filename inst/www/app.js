@@ -19,7 +19,7 @@ $(function(){
 		});
 		
 		//RPC request to score data
-		var req = ocpu.rpc("impute_spring", {input : data, subject : subjectfield}, function(output){
+		var req = ocpu.rpc("impute_spring", {input : data, subject : subj}, function(output){
 			//repopulate the table
 			$("tbody tr").each(function(i){
 				$(this).find(".gradefield").val(output[i].Grade);				
@@ -42,8 +42,9 @@ $(function(){
 		if(!$("#csvfile").val()) return;
 		$("#outputcsv").addClass("hide").attr("href", "");
 		$(".spinner").show()
-		var req = ocpu.call("tv", {
+		var req = ocpu.call("impute_spring", {
 			input : $("#csvfile")[0].files[0]
+			subject : subj
 		}, function(tmp){
 			$("#outputcsv").removeClass("hide").attr("href", tmp.getLoc() + "R/.val/csv")
 		}).fail(function(){
