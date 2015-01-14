@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Springr</title>
+  <title>MAP Springr</title>
   <link href="bootstrap.min.css" rel="stylesheet">
   <style type="text/css">
     body { padding-top: 70px; 
@@ -26,7 +26,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Springr</a>
+          <a class="navbar-brand" href="#">
+            <img alt="mapspringr", src="springbok_small.png">
+          </a>
         </div> <!-- .navbar=-header -->
         
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -41,12 +43,12 @@
       </div> <!-- .container container-fluid -->
     </nav>
     
-    <h1 id="springr" style="padding-top: 60px; margin-top: -60px;">Springr: an <code>R</code> package to impute prior spring NWEA MAP RIT scores from current fall scores. </h1>
-    Springr is an <code><a href="wwww.cran.org">R</a></code> package for imputing missing prior spring RIT scores from current fall RIT scors on the <a href="www.nwea.org">NWEA</a> MAP assessmemt. Tha pacakge has one function: <code>impute_spring</code> that takes as paramters fall map data adn the subject and returns the original data plus an estimated prior spring score, the standard deviation of the score, as well as high and low scores (+/- 2 standard deviations).
+    <h1 id="springr" style="padding-top: 60px; margin-top: -60px;">mapspringr</h1> <h2> an <code>R</code> package to impute prior spring NWEA MAP RIT scores from current fall scores.</h2>
+    <code>mapspringr</code> is an <code><a href="http://cran.r-project.org/">R</a></code> package for imputing missing prior spring RIT scores from current fall RIT scors on the <a href="www.nwea.org">NWEA</a> MAP assessmemt. Tha pacakge has one function: <code>impute_spring</code> that takes as paramters fall map data adn the subject and returns the original data plus an estimated prior spring score, the standard deviation of the score, as well as high and low scores (+/- 2 standard deviations).
 
     You can try out the imputation for a single student by <a href="#impute">filling in the form below</a> or  <a href="#batch">uploading a CDF</a> of fall data for students with missing spring scores. 
 
-    In addition to the using the <code>R</code> package, the <code>impute_spring</code> function can be called from <a href="rpc">any programming language via JSON RPC</a> (thanks to the excellent folks at <a href="www.opencpu.org">OpenCPU</a> for making this product dead simple. 
+    In addition to the using the <code>R</code> package, the <code>impute_spring</code> function can be called from <a href="rpc">any programming language via JSON RPC</a> (thanks to the excellent folks at <a href="www.opencpu.org">OpenCPU</a> for making this process dead simple). 
 
     Predictions are from <a href="http://en.wikipedia.org/wiki/Random_forest">random forest regression</a> models fit to KIPP Chicago student data.  The data are from  spring 2011 through fall 2014. 
 
@@ -59,12 +61,13 @@
         ensuring that "missingness" remains informative. However, having more than one or two fields remain unpopulated will results in widely inaccurate predictions. 
       </div>
     </div>
-
+    <h3>1. Select subject</h3>
     <form class="form-inline" role="form">
       <input type="radio" name="subjectfield" value="reading" checked> Reading
       <br>
       <input type="radio" name="subjectfield" value="math"> Mathematics
       <br>
+      <h3>2. Enter MAP data</h3>
       <br>
       <table class="table table-bordered">
         <thead>
@@ -82,14 +85,19 @@
       <h2 style="padding-top: 60px; margin-top: -60px;">Batch call <code>impute_spring</code> on a Comprehensive Data File (as a CSV)</h2>
     </div>
 
-    <p>You can </p>
+    <p>You can impute spring scores for multiple students by uploading uploading the fall comprehesive data file.  Your data will be returned with 4 additional columns: imputed RIT, standard deviation of imputed RIT, and a high and low RIT scores (i.e., +/- two standard deviations). </p>
+    <div class="alert alert-warning">
+        Your student level data is only used to compute the imputed spring score and is not retained by this application. Your csv you upload only needs to have the followoing fields:  Grade, Fall RIT,  Goal 1 RIT,  Goal 2 RIT, Goal 3 RIT, Goal 4 RIT,Percent Correct, Test Duration.  <b>No student identifyig information needs to be sent to impute spring scores.</b> 
+    </div>
     <p>(<a href="testdata.csv">example data</a>)</p>
 
+    <h3>1. Select subject</h3>
     <form role="form"> 
     <input type="radio" name="csv_subjectfield" value="reading" checked> Reading
       <br>
       <input type="radio" name="csv_subjectfield" value="math"> Mathematics
       <br>
+      <h3>2. Choose CDF to upload</h3>
       <br>
       <div class="form-group">
         <img src="spinner.gif" class="spinner" style="display:none;" />
@@ -105,8 +113,8 @@
       <pre>
         require(devtools)
         
-        install_github("chrishaid/springr")
-        require(sprinr)
+        install_github("chrishaid/mapspringr")
+        require(mapspringr)
 
         data(fallmap)
 
