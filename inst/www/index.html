@@ -6,15 +6,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Springr</title>
   <link href="bootstrap.min.css" rel="stylesheet">
+  <style type="text/css">
+    body { padding-top: 70px; 
+           position: relative;}
+  </style>
 
 
 </head>
-<body>
+<body data-spy="scroll" data-target=".navbar-example">
   <div class="container">
-    <h1>Springr: Impute prior spring RIT scores from current Fall scores. </h1>
 
-    <div class="page-header">
-      <h2>Get scores here</h2>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Springr</a>
+        </div> <!-- .navbar=-header -->
+        
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="#impute">Impute Now</a></li>
+            <li><a href="#batch">Upload CDF</a></li>
+            <li><a href="#R">R Package Usage</a></li>
+            <li><a href="#rpc">RPC Usage</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div> <!-- .container container-fluid -->
+    </nav>
+    
+    <h1 id="springr" style="padding-top: 60px; margin-top: -60px;">Springr: an <code>R</code> package to impute prior spring NWEA MAP RIT scores from current fall scores. </h1>
+    Springr is an <code><a href="wwww.cran.org">R</a></code> package for imputing missing prior spring RIT scores from current fall RIT scors on the <a href="www.nwea.org">NWEA</a> MAP assessmemt. Tha pacakge has one function: <code>impute_spring</code> that takes as paramters fall map data adn the subject and returns the original data plus an estimated prior spring score, the standard deviation of the score, as well as high and low scores (+/- 2 standard deviations).
+
+    You can try out the imputation for a single student by <a href="#impute">filling in the form below</a> or  <a href="#batch">uploading a CDF</a> of fall data for students with missing spring scores. 
+
+    In addition to the using the <code>R</code> package, the <code>impute_spring</code> function can be called from <a href="rpc">any programming language via JSON RPC</a> (thanks to the excellent folks at <a href="www.opencpu.org">OpenCPU</a> for making this product dead simple. 
+
+    Predictions are from <a href="http://en.wikipedia.org/wiki/Random_forest">random forest regression</a> models fit to KIPP Chicago student data.  The data are from  spring 2011 through fall 2014. 
+
+    Springr is maintained by <a href="mailto:chaid@kippchicago.org?Subject=Springr%20R%20Package">Chris Haid</a> at <a href="www.kippchicago.org">KIPP Chicago</a>.
+
+    <div class="page-header" id="impute">
+      <h2 style="padding-top: 60px; margin-top: -60px;">Try spring imputation now</h2>
+      <div class="alert alert-info">
+        To ensure accurate predictions, all eight (8!) fields should be populated. Missing fields are assigned a value of -1,
+        ensuring that "missingness" remains informative. However, having more than one or two fields remain unpopulated will results in widely inaccurate predictions. 
+      </div>
     </div>
 
     <form class="form-inline" role="form">
@@ -35,11 +78,11 @@
       </div>
     </form>
 
-    <div class="page-header">
-      <h2>Batch impute with Comprehensive Data File (as a CSV)</h2>
+    <div class="page-header" id="batch">
+      <h2 style="padding-top: 60px; margin-top: -60px;">Batch call <code>impute_spring</code> on a Comprehensive Data File (as a CSV)</h2>
     </div>
 
-    <p>Lorem ipsum</p>
+    <p>You can </p>
     <p>(<a href="testdata.csv">example data</a>)</p>
 
     <form role="form"> 
@@ -55,10 +98,28 @@
         <a class="btn btn-success btn-lg hide" target="_blank" id="outputcsv">Output CSV</a>
       </div>
       
-    </form>
+    </form>  
 
-    <div class="page-header">
-    <h2>Imputing spring RIT Scores with curl</h2>
+    <div class="page-header" id="R">
+      <h2 style="padding-top: 60px; margin-top: -60px;">Get the <code>R</code> package</h2>
+      <pre>
+        require(devtools)
+        
+        install_github("chrishaid/springr")
+        require(sprinr)
+
+        data(fallmap)
+
+        fallmap_reading <- fallmap[fallmap$MeasurementScale=="Reading"]
+
+        impute_spring(fallmap_reading, subject="reading")
+      </pre>
+    </div>
+
+    
+
+    <div class="page-header" id="rpc">
+    <h2 style="padding-top: 60px; margin-top: -60px;">Call <code>impute_spring</code> from the command line with <code>curl</code></h2>
     </div>
 
     <p>To call the <code>impute_spring</code> function with <code>curl</code> using basic <a href="https://www.opencpu.org/api.html#api-json">JSON RPC</a>:</p>
@@ -77,6 +138,9 @@
     </pre>
 
   </div>
+
+
+
 
   <script src="jquery.min.js"></script>
   <script src="bootstrap.min.js"></script>
