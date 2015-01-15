@@ -13,7 +13,7 @@
 
 
 </head>
-<body data-spy="scroll" data-target=".navbar">
+<body data-spy="scroll" data-target=".navbar ">
   <div class="container">
 
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -38,22 +38,28 @@
             <li><a href="#batch">Upload CDF</a></li>
             <li><a href="#R">R Package Usage</a></li>
             <li><a href="#rpc">RPC Usage</a></li>
+            <li><a href="#motivation">Motivation</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div> <!-- .container container-fluid -->
     </nav>
     
     <h1 id="springr" style="padding-top: 60px; margin-top: -60px;">mapspringr</h1> <h2> an <code>R</code> package to impute prior spring NWEA MAP RIT scores from current fall scores.</h2>
+    <p>
     <code>mapspringr</code> is an <code><a href="http://cran.r-project.org/">R</a></code> package for imputing missing prior spring RIT scores from current fall RIT scors on the <a href="www.nwea.org">NWEA</a> MAP assessmemt. Tha pacakge has one function: <code>impute_spring</code> that takes as paramters fall map data adn the subject and returns the original data plus an estimated prior spring score, the standard deviation of the score, as well as high and low scores (+/- 2 standard deviations).
-
+    </p>
+    <p>
     You can try out the imputation for a single student by <a href="#impute">filling in the form below</a> or  <a href="#batch">uploading a CDF</a> of fall data for students with missing spring scores. 
-
+    </p>
+    <p>
     In addition to the using the <code>R</code> package, the <code>impute_spring</code> function can be called from <a href="rpc">any programming language via JSON RPC</a> (thanks to the excellent folks at <a href="www.opencpu.org">OpenCPU</a> for making this process dead simple). 
-
+    </p> 
+    <p>
     Predictions are from <a href="http://en.wikipedia.org/wiki/Random_forest">random forest regression</a> models fit to KIPP Chicago student data.  The data are from  spring 2011 through fall 2014. 
-
+    </p>
+    <p>
     Springr is maintained by <a href="mailto:chaid@kippchicago.org?Subject=Springr%20R%20Package">Chris Haid</a> at <a href="www.kippchicago.org">KIPP Chicago</a>.
-
+    </p>
     <div class="page-header" id="impute">
       <h2 style="padding-top: 60px; margin-top: -60px;">Try spring imputation now</h2>
       <div class="alert alert-info">
@@ -145,10 +151,27 @@
       '&subject="math"'
     </pre>
 
+  
+
+  <div class="page-header" id="motivation">
+    <h2 style="padding-top: 60px; margin-top: -60px;">Motivation, or why would I want to impute last spring's scores using this fall's scores?</h2>
+    
+
+    <p>
+      The motivation is relatively straightforward:  if you use MAP results to drive instruction and differentiate learning <em>and</em> you measure student achievement as growth over a 12 month, spring-to-spring period, then you need last year's spring scores to understand what students are ready to learn.  Yet we don't always have scores from last spring for every one of our students at the beginning of our school years. Some students are new to our schools and have never taken the MAP or perhpas they are returning students and missed the opportunity in the prior spring to sit for the assessment.  
+    </p>
+    <p>
+      One remedy the quandry posed by missing prior spring RIT scores is to use current fall scores (i.e. scores earned at the beginning of the school year) in lieu of spring scores.  Fall scores however typically lower than the scores students earned in the spring.  The lower score might be caused by summer loss or low student investment/effort on the fall assessemt.  I tend to think that low invesment/effort drives most the observed learning loss between spring and fall.  To be sure, summer loss is component of the difference, yet even if it is, would you rather plan off a measruement that demonstrates your students highest recent ability (i.e., the spring test taken onoy a few months prior) or a measurement that suggests lower abilty and may be the reflect low motivation?  
+    </p>
+    <p>
+      So this package and application is best suited for providing a best estimate of a missing spring score.  If you aren't using last year's spring score to plan, then the isn't the most useful tool.  But if you are, then this tool provides an estimate of how that student might have done had they taken the test in spring last year. Hopefully, this makes makes grouping students for differentiated learning and goal setting for growth a bit more consistent across students.  
+    </p>
+    <p>
+      Feel free <a href="mailto:chaid@kippchicago.org?Subject=Springr%20R%20Package">to email me</a> any feedback you might have!
+    </p>
+    
+
   </div>
-
-
-
 
   <script src="jquery.min.js"></script>
   <script src="bootstrap.min.js"></script>
