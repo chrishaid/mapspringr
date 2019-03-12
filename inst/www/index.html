@@ -7,7 +7,7 @@
   <title>MAP Springr</title>
   <link href="bootstrap.min.css" rel="stylesheet">
   <style type="text/css">
-    body { padding-top: 70px; 
+    body { padding-top: 70px;
            position: relative;}
   </style>
 
@@ -27,10 +27,10 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#">
-            <img alt="mapspringr", src="springbok_small.png">
+            <img alt="mapspringr" src="springbok_small.png">
           </a>
         </div> <!-- .navbar=-header -->
-        
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
@@ -43,19 +43,19 @@
         </div><!-- /.navbar-collapse -->
       </div> <!-- .container container-fluid -->
     </nav>
-    
+
     <h1 id="springr" style="padding-top: 60px; margin-top: -60px;">mapspringr</h1> <h2> an <code>R</code> package to impute prior spring NWEA MAP RIT scores from current fall scores.</h2>
     <p>
     <code>mapspringr</code> is an <code><a href="http://cran.r-project.org/">R</a></code> package for imputing missing prior spring RIT scores from current fall RIT scors on the <a href="www.nwea.org">NWEA</a> MAP assessmemt. Tha pacakge has one function: <code>impute_spring</code> that takes as paramters fall map data adn the subject and returns the original data plus an estimated prior spring score, the standard deviation of the score, as well as high and low scores (+/- 2 standard deviations).
     </p>
     <p>
-    You can try out the imputation for a single student by <a href="#impute">filling in the form below</a> or  <a href="#batch">uploading a CDF</a> of fall data for students with missing spring scores. 
+    You can try out the imputation for a single student by <a href="#impute">filling in the form below</a> or  <a href="#batch">uploading a CDF</a> of fall data for students with missing spring scores.
     </p>
     <p>
-    In addition to the using the <code>R</code> package, the <code>impute_spring</code> function can be called from <a href="rpc">any programming language via JSON RPC</a> (thanks to the excellent folks at <a href="www.opencpu.org">OpenCPU</a> for making this process dead simple). 
-    </p> 
+    In addition to the using the <code>R</code> package, the <code>impute_spring</code> function can be called from <a href="rpc">any programming language via JSON RPC</a> (thanks to the excellent folks at <a href="www.opencpu.org">OpenCPU</a> for making this process dead simple).
+    </p>
     <p>
-    Predictions are from <a href="http://en.wikipedia.org/wiki/Random_forest">random forest regression</a> models fit to KIPP Chicago student data.  The data are from  spring 2011 through fall 2014. 
+    Predictions are from <a href="http://en.wikipedia.org/wiki/Random_forest">random forest regression</a> models fit to KIPP Chicago student data.  The data are from  spring 2011 through fall 2014.
     </p>
     <p>
     Springr is maintained by <a href="mailto:chaid@kippchicago.org?Subject=Springr%20R%20Package">Chris Haid</a> at <a href="www.kippchicago.org">KIPP Chicago</a>.
@@ -64,7 +64,7 @@
       <h2 style="padding-top: 60px; margin-top: -60px;">Try spring imputation now</h2>
       <div class="alert alert-info">
         To ensure accurate predictions, all eight (8!) fields should be populated. Missing fields are assigned a value of -1,
-        ensuring that "missingness" remains informative. However, having more than one or two fields remain unpopulated will results in widely inaccurate predictions. 
+        ensuring that "missingness" remains informative. However, having more than one or two fields remain unpopulated will results in widely inaccurate predictions.
       </div>
     </div>
     <h3>1. Select subject</h3>
@@ -93,12 +93,12 @@
 
     <p>You can impute spring scores for multiple students by uploading uploading the fall comprehesive data file.  Your data will be returned with 4 additional columns: imputed RIT, standard deviation of imputed RIT, and a high and low RIT scores (i.e., +/- two standard deviations). </p>
     <div class="alert alert-warning">
-        Your student level data is only used to compute the imputed spring score and is not retained by this application. Your csv you upload only needs to have the followoing fields:  Grade, Fall RIT,  Goal 1 RIT,  Goal 2 RIT, Goal 3 RIT, Goal 4 RIT,Percent Correct, Test Duration.  <b>No student identifyig information needs to be sent to impute spring scores.</b> 
+        Your student level data is only used to compute the imputed spring score and is not retained by this application. Your csv you upload only needs to have the followoing fields:  Grade, Fall RIT,  Goal 1 RIT,  Goal 2 RIT, Goal 3 RIT, Goal 4 RIT,Percent Correct, Test Duration.  <b>No student identifyig information needs to be sent to impute spring scores.</b>
     </div>
     <p>(<a href="testdata.csv">example data</a>)</p>
 
     <h3>1. Select subject</h3>
-    <form role="form"> 
+    <form role="form">
     <input type="radio" name="csv_subjectfield" value="reading" checked> Reading
       <br>
       <input type="radio" name="csv_subjectfield" value="math"> Mathematics
@@ -107,18 +107,18 @@
       <br>
       <div class="form-group">
         <img src="spinner.gif" class="spinner" style="display:none;" />
-        <input class="btn btn-primary btn-lg" type="file" id="csvfile"> 
-        <br> 
+        <input class="btn btn-primary btn-lg" type="file" id="csvfile">
+        <br>
         <a class="btn btn-success btn-lg hide" target="_blank" id="outputcsv">Output CSV</a>
       </div>
-      
-    </form>  
+
+    </form>
 
     <div class="page-header" id="R">
       <h2 style="padding-top: 60px; margin-top: -60px;">Get the <code>R</code> package</h2>
       <pre>
         require(devtools)
-        
+
         install_github("chrishaid/mapspringr")
         require(mapspringr)
 
@@ -130,7 +130,7 @@
       </pre>
     </div>
 
-    
+
 
     <div class="page-header" id="rpc">
     <h2 style="padding-top: 60px; margin-top: -60px;">Call <code>impute_spring</code> from the command line with <code>curl</code></h2>
@@ -151,25 +151,25 @@
       '&subject="math"'
     </pre>
 
-  
+
 
   <div class="page-header" id="motivation">
     <h2 style="padding-top: 60px; margin-top: -60px;">Motivation, or why would I want to impute last spring's scores using this fall's scores?</h2>
-    
+
 
     <p>
-      The motivation is relatively straightforward:  if you use MAP results to drive instruction and differentiate learning <em>and</em> you measure student achievement as growth over a 12 month, spring-to-spring period, then you need last year's spring scores to understand what students are ready to learn.  Yet we don't always have scores from last spring for every one of our students at the beginning of our school years. Some students are new to our schools and have never taken the MAP or perhpas they are returning students and missed the opportunity in the prior spring to sit for the assessment.  
+      The motivation is relatively straightforward:  if you use MAP results to drive instruction and differentiate learning <em>and</em> you measure student achievement as growth over a 12 month, spring-to-spring period, then you need last year's spring scores to understand what students are ready to learn.  Yet we don't always have scores from last spring for every one of our students at the beginning of our school years. Some students are new to our schools and have never taken the MAP or perhpas they are returning students and missed the opportunity in the prior spring to sit for the assessment.
     </p>
     <p>
-      One remedy the quandry posed by missing prior spring RIT scores is to use current fall scores (i.e. scores earned at the beginning of the school year) in lieu of spring scores.  Fall scores however typically lower than the scores students earned in the spring.  The lower score might be caused by summer loss or low student investment/effort on the fall assessemt.  I tend to think that low invesment/effort drives most the observed learning loss between spring and fall.  To be sure, summer loss is component of the difference, yet even if it is, would you rather plan off a measruement that demonstrates your students highest recent ability (i.e., the spring test taken onoy a few months prior) or a measurement that suggests lower abilty and may be the reflect low motivation?  
+      One remedy the quandry posed by missing prior spring RIT scores is to use current fall scores (i.e. scores earned at the beginning of the school year) in lieu of spring scores.  Fall scores however typically lower than the scores students earned in the spring.  The lower score might be caused by summer loss or low student investment/effort on the fall assessemt.  I tend to think that low invesment/effort drives most the observed learning loss between spring and fall.  To be sure, summer loss is component of the difference, yet even if it is, would you rather plan off a measruement that demonstrates your students highest recent ability (i.e., the spring test taken onoy a few months prior) or a measurement that suggests lower abilty and may be the reflect low motivation?
     </p>
     <p>
-      So this package and application is best suited for providing a best estimate of a missing spring score.  If you aren't using last year's spring score to plan, then the isn't the most useful tool.  But if you are, then this tool provides an estimate of how that student might have done had they taken the test in spring last year. Hopefully, this makes makes grouping students for differentiated learning and goal setting for growth a bit more consistent across students.  
+      So this package and application is best suited for providing a best estimate of a missing spring score.  If you aren't using last year's spring score to plan, then the isn't the most useful tool.  But if you are, then this tool provides an estimate of how that student might have done had they taken the test in spring last year. Hopefully, this makes makes grouping students for differentiated learning and goal setting for growth a bit more consistent across students.
     </p>
     <p>
       Feel free <a href="mailto:chaid@kippchicago.org?Subject=Springr%20R%20Package">to email me</a> any feedback you might have!
     </p>
-    
+
 
   </div>
 
